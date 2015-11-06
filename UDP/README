@@ -1,0 +1,26 @@
+Description: This project builds a simple Client-Server program using UDP. It handles serialization, logging at server and client sides and exceptions like Server Timeout, Unrequested Packet and Malformed Request.
+
+## The src folder contains all the .java files and server and client log files
+## The bin folder contains the binaries and UDP client and server .jar files
+
+## To build UDPClient and UDPServer, run the Makefile from the src folder in UDP folder.
+
+$ cd src
+$ make
+
+## This will build UDPClient and UDPServer as different .jar files which can be deployed
+## to separate hosts independent of each other.
+
+### Running client and server both on local machine
+## To run the UDPServer, run from the src folder.
+	java -cp ../bin/UDPServer.jar UDPServer 1234
+
+## To run the UDPCLient, run from the src folder.
+	java -cp ../bin/UDPClient.jar UDPClient localhost 1234
+
+### Running client and server on different remote machines
+## To run the UDPServer, copy jar to remote host and run following.
+	java -cp UDPServer.jar UDPServer 1234
+
+## To run the UDPClient, copy jar to remote host and run following.
+	java -cp UDPClient.jar UDPClient <SERVER_HOSTNAME> 1234

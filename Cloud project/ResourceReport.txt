@@ -1,0 +1,144 @@
+
+
+<----Ubuntu---->
+
+<-----Key Resource Utilization Data----->
+
+---Memory,process and CPU related displays:---
+
+procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
+ 1  0      0 122888  56892 334868    0    0   587    14  118  727 12  4 84  0  0
+
+
+---RAM Usage:---
+
+             total       used       free     shared    buffers     cached
+Mem:       1017364     894600     122764       4492      56892     334868
+-/+ buffers/cache:     502840     514524
+Swap:      1046524          0    1046524
+
+
+---Disk Usage:---
+
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1       6.8G  3.8G  2.7G  59% /
+none            4.0K     0  4.0K   0% /sys/fs/cgroup
+udev            486M  4.0K  486M   1% /dev
+tmpfs           100M  860K   99M   1% /run
+none            5.0M  4.0K  5.0M   1% /run/lock
+none            497M   76K  497M   1% /run/shm
+none            100M   48K  100M   1% /run/user
+DownlSh         112G   77G   35G  70% /media/sf_DownlSh
+/dev/sr0         56M   56M     0 100% /media/surabhi/VBOXADDITIONS_4.3.26_98988
+
+
+---I/O Statistics:---
+
+Linux 3.16.0-23-generic (surabhi-VirtualBox) 	06/04/15 	_x86_64_	(1 CPU)
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+          10.43    1.57    3.98    0.27    0.00   83.75
+
+Device:            tps    kB_read/s    kB_wrtn/s    kB_read    kB_wrtn
+scd0              0.03         0.10         0.00         70          0
+sda              16.58       565.46        13.77     385495       9388
+
+
+<----mint---->
+
+<-----Key Resource Utilization Data----->
+
+---Memory,process and CPU related displays:---
+
+procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
+ 0  0   5540   6576   5508 162076    2    8   696    34  115  328  2  1 96  0  0
+
+
+---RAM Usage:---
+
+             total       used       free     shared    buffers     cached
+Mem:        501764     495124       6640       7068       5508     162076
+-/+ buffers/cache:     327540     174224
+Swap:      1328124       5540    1322584
+
+
+---Disk Usage:---
+
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1       8.5G  4.4G  3.7G  55% /
+none            4.0K     0  4.0K   0% /sys/fs/cgroup
+udev            230M  4.0K  230M   1% /dev
+tmpfs            50M  1.1M   48M   3% /run
+none            5.0M     0  5.0M   0% /run/lock
+none            245M 1000K  245M   1% /run/shm
+none            100M   12K  100M   1% /run/user
+/dev/sr0         56M   56M     0 100% /media/ujjwal/VBOXADDITIONS_4.3.26_989881
+
+
+---I/O Statistics:---
+
+Linux 3.13.0-37-generic (ujjwal-VirtualBox) 	06/04/15 	_x86_64_	(1 CPU)
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           2.24    0.00    1.11    0.47    0.00   96.18
+
+Device:            tps    kB_read/s    kB_wrtn/s    kB_read    kB_wrtn
+scd0              0.05         0.18         0.00        118          0
+sda              27.04       677.37        34.43     439595      22344
+
+
+<----Windows---->
+
+<-----Key Resource Utilization Data----->
+
+---CPU Utilization:---
+
+System   0smss   0
+csrss   0
+wininit   0
+csrss#1   0
+winlogon   0
+services   0lsass   0lsm   0
+svchost   0
+VBoxService   0
+svchost#1   0svchost#2   0
+svchost#3   4
+svchost#4   0
+svchost#5   4svchost#6   0
+spoolsv   0svchost#7   4
+svchost#8   0
+taskhost   0
+dwm   0
+explorer   0VBoxTray   0
+SearchIndexer   0
+sppsvc   0
+svchost#9   4
+wmpnetwk   0WmiPrvSE   0
+TrustedInstaller   0
+mobsync   0
+audiodg   0
+dllhost   0VBoxService#1   8
+conhost   0
+cmd   0
+cscript   0
+WmiPrvSE#1   0
+
+
+---Memory Usage:---
+
+Total Physical Memory:     512 MB
+Available Physical Memory: 142 MB
+Virtual Memory: Max Size:  1,536 MB
+Virtual Memory: Available: 941 MB
+Virtual Memory: In Use:    595 MB
+
+
+---Disk Usage:---
+
+Caption  FreeSpace    Size         
+C:       17235877888  26736586752  
+D:       0            58120192     
+E:                                 
+
+
+
