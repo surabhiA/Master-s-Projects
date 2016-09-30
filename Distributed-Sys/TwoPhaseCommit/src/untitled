@@ -1,0 +1,9 @@
+all: project jar
+
+project: FordFulkerson.class FordFulkersonAlt.class Edge.class GraphInput.class InputLib.class KeyboardReader.class PreFlowPushAlgo.class ScalingMaxFlow.class SimpleGraph.class TCSS543.class Vertex.class
+
+jar: project
+	cd ../bin; jar cf RPCServer.jar RPCServer.class KVStore.class KVStoreImpl.class TwoPhaseCommit.class TwoPhaseCommitImpl.class TPCCoordinator.class KeyNotFoundException.class DataStore.class ResponseTPC.class RollbackException.class DataStore\$$LockManager.class 
+
+%.class: %.java
+	javac $< -d ../bin/

@@ -1,0 +1,210 @@
+import java.util.*;
+import java.io.*;
+
+/**
+ * 
+ * @author JessicaG
+ * The code is for PreFlowPush Algorithm
+ * 1) The height of all the nodes except Source Node is 0
+ * 2) The maximum flow at Source Node is assumed to be Maximum possible (like infinity)
+ * 3) The PreflowPush function contains both Push and Relabel operation as a part of it.
+ * 4) Used an additional parameter true and false, to distinguish between source/sink node and forward/backward edges.
+ */
+public class maxflowMy {
+	static HashMap<String, Node> nodes = new HashMap<String, Node>();
+	//static HashSet<String> Uvertices = new HashSet<String>();
+	//static int TVertices=0;
+	static Node s = null;
+	static Node t = null;
+	/*public static int vertexCount(String fileN){
+		try(BufferedReader br = new BufferedReader(new FileReader(fileN))) {
+		    for(String line; (line = br.readLine()) != null; ) {  //Reading from input file
+		        String[] vertices = line.trim().split("\\s+");
+		        for (int i=0;i<vertices.length-1;i++){
+		        	Uvertices.add(vertices[i]); // to get the unique nodes only
+		        }
+		    }
+		    br.close();
+			System.out.println("Size: "+Uvertices.size());
+		} 
+		
+		catch (IOException e) {
+			System.out.println("Problem in reading from the File");
+		}
+		return Uvertices.size();
+	}*/
+	private static Node getOrAddVertex(String V) {
+		if (nodes.containsKey(V)) {
+			return nodes.get(V);
+		}
+		else {
+			Node vertex = new Node(V);
+			if(V.equals("s")){
+				vertex.isSourceOrSink=true;
+				vertex.excess=Integer.MAX_VALUE;
+				//vertex.height=TVertices;
+				s=vertex;
+			}
+			else if(V.equals("t")){
+				vertex.isSourceOrSink=true;
+    			t=vertex;
+			}
+			nodes.put(V, vertex);
+			return vertex;
+		}
+	}
+	/**
+	 * Main runner Class
+	 **/
+	public static int runner(String fileName){
+		clear();
+		// TVertices = vertexCount(fileName);
+		
+		try(BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+		    for(String line; (line = br.readLine()) != null; ) {  //Reading from input file
+		        String[] vertices = line.trim().split("\\s+");
+		        Node VertexS = getOrAddVertex(vertices[0]);
+		        Node VertexE = getOrAddVertex(vertices[1]);
+	        		/*if(vertices[0].equalsIgnoreCase ("s")){
+	        			
+	        		}
+	        		if(vertices[0].equalsIgnoreCase ("t")){
+	        			VertexS.isSourceOrSink=true;
+	        		}
+	        		if(vertices[1].equalsIgnoreCase ("s")){
+	        			VertexE.isSourceOrSink=true;
+	        			VertexE.excess=Integer.MAX_VALUE;
+	        			VertexE.height=TVertices;
+	        		}
+	        		if(vertices[1].equalsIgnoreCase ("t")){
+	        			
+	        		}*/
+		        new Edge(VertexE,VertexS,Integer.parseInt(vertices[2]), false); // Call to create edge
+		    }
+	        br.close();
+		} 
+		catch (IOException e) {
+			System.out.println("Problem in reading from the File");
+		}
+		s.height=nodes.size();
+		//System.out.println("Total Vertices: "+nodes.size());
+		PreflowPush(s, t);
+		System.err.printf("Flow pushed through the graph: %d\n", t.excess);
+		return t.excess;
+		
+	}
+	public static void clear(){
+		nodes.clear();
+		s=null;
+		t=null;
+	}
+	/*
+	 * PreflowPush algorithm
+	 */
+	public static void PreflowPush(Node s, Node t) {
+		// source.height should be the number of nodes, sink.height should be 0
+		LinkedList<Node> q = new LinkedList<Node>();
+		q.add(s);//add the nodes with Pre-flow
+		while (!q.isEmpty()) {
+			Node node = q.remove();
+			int minHeight = Integer.MAX_VALUE;
+			for (int i = 0; i < node.neighbors.size(); i++) {
+				//System.out.println("size of Neighbor node: "+node.neighbors.size());
+				//System.out.println("height of node: "+node+" height: "+node.height);
+				/*
+				 * This is to check if there is an edge with less height than the source node( node v as v to w)
+				 */
+				if (node.neighbors.get(i).dest.height < minHeight
+						&& node.neighbors.get(i).remaining() > 0)
+					minHeight = node.neighbors.get(i).dest.height;
+				//System.out.println("minHeight of Dest"+ node.neighbors.get(i).dest.toString());
+				//System.out.println("minHeight: "+minHeight);
+			}
+			/*
+			 * Relabel operation
+			 */
+			if (minHeight != Integer.MAX_VALUE && minHeight >= node.height)
+				node.height = minHeight + 1;
+			for (int i = 0; i < node.neighbors.size(); i++) {
+				if (node.neighbors.get(i).dest.height < node.height) {
+					int pushedFlow = node.neighbors.get(i).remaining();
+					//System.out.println("node info: "+node.neighbors.get(i));
+					if (pushedFlow > node.excess)
+						pushedFlow = node.excess;
+					//System.out.println("pushedFlow: "+pushedFlow);
+					if (pushedFlow > 0) {
+						node.neighbors.get(i).flow += pushedFlow;
+						node.neighbors.get(i).back.flow -= pushedFlow;
+						node.neighbors.get(i).dest.excess += pushedFlow;
+						node.excess -= pushedFlow;
+						//System.out.println("Excess on Node: "+node.excess);
+						if (!node.neighbors.get(i).dest.isSourceOrSink)
+							q.add(node.neighbors.get(i).dest);
+						if (node.excess <= 0)
+							break;
+					}
+				}
+			}
+			if (node.excess > 0 && !node.isSourceOrSink)
+				q.add(node);
+		}
+	}
+	/**
+	 *Main
+	 **/
+	public static void main(String[] args) {
+		maxflowMy pa = new maxflowMy();
+		String filen = args[0];  //Manipulate the path of file as argument
+		long start = System.nanoTime();
+		runner(filen);
+		double diff=(double) ((System.nanoTime() - start)/1000000000.0);
+		System.out.println("finished... "+diff);
+
+	}
+}
+/*
+ * The class file for Nodes
+ */
+class Node {
+	ArrayList<Edge> neighbors ;
+	 int height;
+	 int excess;
+	 boolean isSourceOrSink;
+	public Node(String v){
+	neighbors = new ArrayList<Edge>();
+	height = 0;
+	excess = 0;
+	isSourceOrSink = false;
+	}
+	public Node(){
+		neighbors = new ArrayList<Edge>();
+		height = 1;
+		excess = 0;
+		isSourceOrSink = false;
+		}
+}
+/*
+ * Handle Adjacent edges and flow, capacity values.
+ */
+class Edge {
+	public Node dest;
+	public Edge back;
+	public int capacity;
+	public int flow = 0;
+
+	public Edge(Node dest, Node source, int capacity, boolean isBack) {
+		this.dest = dest;
+		this.capacity = capacity;
+		source.neighbors.add(this);
+		if (!isBack) {
+			Edge backEdge = new Edge(source, this.dest, 0, true);
+			this.back = backEdge;
+			backEdge.back = this;
+		}
+	}
+
+	public int remaining() {
+		return capacity - flow;
+	}
+}
+

@@ -1,0 +1,9 @@
+s a 4
+a c 2
+c t 4
+s b 4
+b d 2
+d t 4
+b a 3
+b c 5
+c d 3

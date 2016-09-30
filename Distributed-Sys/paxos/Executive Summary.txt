@@ -1,0 +1,35 @@
+Fault tolerant multi-client multi-server distributed in-memory key-value store using paxos protocol
+
+                                                       -By Swati Garg and Surabhi Agrawal
+
+Overview:
+	In this project we build a fault tolerant multi-client multi-server distributed key-value store. Our previous project used two phase commit, which is not fault tolerant. In this project, we extended the previous project to support fault tolerance and achieve consensus between servers using Paxos protocol. Like the previous projects, we use RMI for server-client and server-server communications. We implemented all Paxos roles, i.e Proposers, Acceptors and Learners, as threads in all the servers. All the servers are expected to follow the protocol, so the project does not safeguard against byzantine faults.
+Lastly we create a system to induce random faults in the Acceptors and Proposers threads in order to validate the fault tolerance of the protocol.
+
+Our Paxos protocol Implementation:
+	Paxos is a protocol for achieving consensus between servers. It is fault tolerant i.e. the protocol works even if some servers die. Paxos functions through three main roles: Proposer, Acceptor and Learner. Each server supports all the three roles via different RMI objects. The value that is under contention is an instance of the operation class.
+
+	The client sends a request to any one server, randomly chosen from the list provided to it. That server than chooses a random proposer from all of the existing servers. 
+
+	Proposer initiates a proposal with a proposalID, and sends it to all the other servers’ Acceptors. 
+
+	The Acceptor keeps the highest proposalID that they have promised as of yet. When they get a proposal from the Proposers, it check the proposalID against its own. If the received proposalID is larger than its own, it update its proposalID, stores the passed in value, and send back, to the proposers, the stored value if it has any. If the received proposalID is smaller than what it has, it sends a reject exception with its proposalID. This is a performance optimization and is done to inform the proposers so that they know by how much they needs to increase their proposalID while sending the next proposal. 
+
+	The proposer checks for a Quorum, i.e. majority of the Acceptors have accepted its proposal. If there is Quorum, the Proposer sends the accept message to all the Acceptors. The value sent is either the largest proposalID value returned by the acceptors or its own. If there is no Quorum, it checks for the reject messages and updates its proposalID to the largest of all the proposalId's sent by the Acceptors, and tries again.
+
+	If an Acceptor has promised a proposal of higher sequence number than that received in the accept request, it rejects the accept request and sends the new highest proposalID to the Proposer. Otherwise, the Acceptor send an accepted message back to the Proposer and send the value to all the Learners. 
+
+	The Learners check if at least half of the Acceptors have sent it the value, and then executes the instruction on its local key-value store.
+
+Technical Impression:
+	The Key-Value store (which the client connects to) and Paxos roles (Proposer, Acceptors and Learners) are implemented using RMI objects. The use of RMI makes the basic server and client code simpler, as it presents a local function-call semantics to the remote objects. We have implemented a timeout mechanism, so that the caller doesn’t wait indefinitely. After timeout, the caller assumes that the particular server has rejected the request and continues.
+	In addition, since the Acceptors and Proposers can fail at any time, we implemented a file backup for the paxos protocol information that is needed for their role. This allows them to continue the protocol even after they are killed and restarted.
+	Multiple clients calls can result in multiple Proposers. This can cause a live lock where each Proposer rapidly sends proposals with a higher number so that no request actually gets accepted. We address this live-lock by applying a cap on the number of times a proposer sends a proposal. 
+	Since our proposers can also fail, the server which chose the original proposer chooses another random proposer to continue the protocol. To prevent the server into going an endless loop of selecting new proposer and that proposer dying without making progress, we cap the number of times the proposer is chosen before returning an error to the client.
+	Our proposers will always try to send the value that they are called with. This could mean finishing off any existing pacts protocol and starting a new one with their value as proposal. This ensures that the client commands are always executed, even when the earlier excessive failures resulted in an incomplete paxos protocol. 
+
+	Since our implementation uses RMI and RMI doesn’t guarantees which thread a function will be run on, we can’t do thread manipulation to induce failures. In its lieu, we created a system called gremlin which randomly stops a thread. Both the Acceptor and the Proposers call this system with their thread as soon as they start a step in paxos protocol. The gremlin system will wait for a small amount of time and then will randomly, based on a probability, stop the thread from which it was called. This causes the corresponding acceptor or proposal thread to stop processing and die. As such, this system lets us introduce random faults in the system, thus simulating random hardware or network failure in the distributed system. This can also result in exceptions in the underlying RMI system.
+
+	We have incorporated client and server side logging. The client side logging mostly involves handling exceptions. We used the java logging library to log the errors in a file. The server side was more complicated. We wanted to log all the calls to the server as well as any error messages that were passed back to the client. We used the transport level logging of RMI for this purpose and routed the log to a log file.
+
+	Lastly, in order to demonstrate the working of the paxos protocol and the gremlin system, we have outputted information messages about various events to the server console. This is done for the demonstration purposes only.

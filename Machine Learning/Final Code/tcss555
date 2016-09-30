@@ -1,0 +1,244 @@
+#!/usr/bin/python
+import sys
+import warnings
+import argparse
+import csv
+
+import pandas as pd
+import numpy as np
+
+from collections import Counter
+
+import AgeGenPred
+import PerPred
+import log_reg_query
+import oxford
+import page_likes
+cfAge = ""
+cfSex = ""
+regrOpe = ""
+regrExt = ""
+regrCon = ""
+regrNeu = ""
+regrAgr = ""
+ageLikes = ""
+ageLikesUPU = ""
+genderLikesUPU = 0.0
+df = ""
+cfImages = []
+genderLikes = 0.0
+opeLikes = 0.0
+neuLikes = 0.0
+extLikes = 0.0
+agrLikes = 0.0
+conLikes = 0.0
+ageImages = ""
+genderImages = 0.0
+opeImages = 0.0
+neuImages = 0.0
+extImages = 0.0
+agrImages = 0.0
+conImages = 0.0
+ageText = ""
+genderText = 0.0
+opeText = 0.0
+neuText = 0.0
+extText = 0.0
+agrText = 0.0
+conText = 0.0
+
+#####################Create XML output for each userId#########################
+def writeXMLoutput(outputPath, userID, gender, age, ope, con, ext, agr, neu) :
+	fw = open(outputPath + "/" + userID + ".xml", "w")	
+	fw.write("<User id = \"" + userID + "\"\n" 
+		+ "age_group = \"" + age + "\"\n" 
+		+ "gender = \"" + gender + "\"\n" 
+       + "open = \"" + ope + "\"\n"
+        + "conscientious = \"" + con + "\"\n"
+        + "extrovert = \"" + ext + "\"\n" 
+        + "agreeable = \"" + agr + "\"\n" 
+        + "neurotic = \"" + neu + "\"\n"
+ 		+ "/>")
+	fw.close()
+
+############################################################
+def trainText():
+	global cfSex, cfAge, regrOpe, regrExt, regrCon, regrNeu, regrAgr, df
+	#sex and age predictor
+	cfSex, cfAge = AgeGenPred.trainAgeGender(0)
+
+	# personality predictor
+	df = PerPred.createTestLIWCDf(testDataPath)
+	X, YOPE, YExt, YCon, YAgr, YNeu = PerPred.createDataFrame()
+	regrOpe = PerPred.trainEachPeronality(X, YOPE)
+	regrExt = PerPred.trainEachPeronality(X, YExt)
+	regrCon = PerPred.trainEachPeronality(X, YCon)
+	regrNeu = PerPred.trainEachPeronality(X, YNeu)
+	regrAgr = PerPred.trainEachPeronality(X, YAgr)
+
+def trainImages():
+	global cfImages
+	cfImages=oxford.getImages()
+
+
+def predictUsingLike(testDataPath, userId):
+	global ageLikes, genderLikes
+	ageLikes, genderLikes = log_reg_query.start(testDataPath,userId)
+
+def predictUsingText(testDataPath, userId):
+
+	global ageText, genderText, opeText,neuText, agrText, conText, extText
+	data = AgeGenPred.getDict(testDataPath + "/text/" + userId + ".txt")
+	genderText = float(cfSex.classify(data))
+	ageText = cfAge.classify(data)
+	dfTest = PerPred.getuserLIWC(df, userId)
+	dfTest.drop(['userId'],inplace=True,axis=1,errors='ignore')
+	opeText = float(regrOpe.predict(dfTest)[0][0])
+	extText = float(regrExt.predict(dfTest)[0][0])
+	conText = float(regrCon.predict(dfTest)[0][0])
+	neuText = float(regrNeu.predict(dfTest)[0][0])
+	agrText = float(regrAgr.predict(dfTest)[0][0])
+
+def predictUsingImages(testDataPath, userId,cfImages):
+
+	global ageImages, genderImages, opeImages, neuImages, extImages, agrImages, conImages
+
+	predictedImage = oxford.predictTestData(testDataPath, userId, cfImages)
+	ageImages = predictedImage[0]
+	genderImages = predictedImage[1]
+	opeImages = predictedImage[2]
+	neuImages = predictedImage[3]
+	extImages = predictedImage[4]
+	agrImages = predictedImage[5]
+	conImages = predictedImage[6]
+
+def predictUsingLikesUPU(testDataPath, userId):
+
+	global opeLikes, neuLikes, extLikes, agrLikes, conLikes, ageLikesUPU, genderLikesUPU
+
+	ageLikesUPU, genderLikesUPU, opeLikes, neuLikes , extLikes, agrLikes, conLikes = page_likes.start(testDataPath, userId)
+
+
+def getMajority():
+	Age = getMajorityAge()
+	Gender = getMajorityGender() 
+	Ope = getMajorityOpe()
+	Con = getMajorityCon()
+	Ext = getMajorityExt()
+	Agr = getMajorityAgr()
+	Neu = getMajorityNeu()
+	return Age, Gender, Ope, Con, Ext, Agr, Neu
+
+
+def getMajorityAge():
+	age = []
+	age.append(ageText)
+	age.append(ageLikes)
+	age.append(ageLikesUPU)
+	#age.append(ageImages[0])
+	majorityAge = Counter(age).most_common(1)[0][0]
+	return majorityAge
+
+def getMajorityGender():
+	gender = []
+	gender.append(genderText)
+	gender.append(genderLikes)
+	gender.append(float(genderImages[0]))
+	gender.append(genderLikesUPU)
+	majorityGender = Counter(gender).most_common(1)[0][0]
+	if majorityGender == 0.0:
+		return "Male"
+	elif majorityGender == 1.0:
+		return "Female"
+
+
+def getMajorityOpe():
+	ope = []
+	ope.append(float(opeText))
+	ope.append(float(opeLikes))
+	ope.append(float(opeImages[0]))
+	ope_average = str(np.mean(ope))
+	return ope_average
+
+def getMajorityCon():
+	con = []
+	con.append(float(conText))
+	con.append(float(conLikes))
+	con.append(float(conImages[0]))
+	con_average = str(np.mean(con))
+	return con_average
+
+def getMajorityExt():
+	ext = []
+	ext.append(float(extText))
+	ext.append(float(extLikes))
+	ext.append(float(extImages[0]))
+	ext_average = str(np.mean(ext))
+	return ext_average
+
+def getMajorityNeu():
+	neu = []
+	neu.append(float(neuText))
+	neu.append(float(neuLikes))
+	neu.append(float(neuImages[0]))
+	neu_average = str(np.mean(neu))
+	return neu_average
+
+def getMajorityAgr():
+	agr = []
+	agr.append(float(agrText))
+	agr.append(float(agrLikes))
+	agr.append(float(agrImages[0]))
+	agr_average = str(np.mean(agr))
+	return agr_average
+
+#####################Predicts the Model######################
+def predictAndOutput(testDataPath, outputPath) :
+	global cfSex, cfAge, regrAgr, regrNeu, regrCon, regrExt, regrOpe, cfImages
+	warnings.simplefilter("ignore")
+    # Train models
+	trainImages()
+	trainText()
+	# sex and age predictor
+	# cfSex, cfAge = AgeGenPred.trainAgeGender(0)
+
+	# # personality predictor
+	# df = PerPred.createTestLIWCDf(testDataPath)
+	# X, YOPE, YExt, YCon, YAgr, YNeu = PerPred.createDataFrame()
+	# regrOpe = PerPred.trainEachPeronality(X, YOPE)
+	# regrExt = PerPred.trainEachPeronality(X, YExt)
+	# regrCon = PerPred.trainEachPeronality(X, YCon)
+	# regrNeu = PerPred.trainEachPeronality(X, YNeu)
+	# regrAgr = PerPred.trainEachPeronality(X, YAgr)
+
+ #    # test data
+	profileTestFile = open(testDataPath + "/profile/profile.csv", "rU")
+	profileTestReader = csv.reader(profileTestFile)
+	
+	# # skip headers
+	headersProfile = next(profileTestReader)
+
+	# #Writes the predicted values in the xml format
+	for row in profileTestReader :
+		predictUsingLike(testDataPath, row[1])
+		predictUsingText(testDataPath, row[1])
+		predictUsingLikesUPU(testDataPath, row[1])
+		predictUsingImages(testDataPath, row[1],cfImages)
+
+		Age, Gender, Ope, Con, Ext, Agr, Neu = getMajority()
+	#  data = AgeGenPred.getDict(testDataPath + "/text/" + row[1] + ".txt")
+	# 	dfTest = PerPred.getuserLIWC(df, row[1])
+	# 	dfTest.drop(['userId'],inplace=True,axis=1,errors='ignore')
+		writeXMLoutput(outputPath, row[1], Gender, Age, Ope, Con, Ext, Agr, Neu)
+
+	profileTestFile.close()
+
+####################################################################
+#Main
+parser = argparse.ArgumentParser(usage = "tcss555 -i input_filedir -o output_filedir")
+parser.add_argument('-i', required = True)
+parser.add_argument('-o', required = True)
+args = parser.parse_args()
+testDataPath = args.i
+outputPath = args.o
+predictAndOutput(testDataPath, outputPath)

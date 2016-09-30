@@ -1,0 +1,668 @@
+Thu Nov 12 23:31:58 PST 2015 INFO: GET instruction failed : Key = key1 not found
+Sun Nov 15 12:14:17 PST 2015 INFO: GET instruction failed : Key = abc not found
+Sun Nov 15 12:16:45 PST 2015 INFO: GET instruction failed : Key = abc not found
+Sun Nov 15 15:10:17 PST 2015 INFO: GET instruction failed : Key = Key1 not found
+Sun Nov 15 15:12:08 PST 2015 INFO: GET instruction failed : Key = Key1 not found
+Sun Nov 15 15:44:40 PST 2015 INFO: GET instruction failed : Key = Key1 not found
+Sun Nov 15 15:45:54 PST 2015 INFO: DELETE instruction failed : Key = abc not found
+Sun Nov 15 15:46:19 PST 2015 INFO: GET instruction failed : Key = Key1 not found
+Sun Nov 15 15:46:32 PST 2015 INFO: GET instruction failed : Key = Key1 not found
+Sun Nov 15 18:51:55 PST 2015 INFO: GET instruction failed : Key = Key1 not found
+Sun Nov 15 20:00:08 PST 2015 INFO: GET instruction failed : Key = Key1 not found
+Sun Nov 15 20:23:33 PST 2015 INFO: GET instruction failed : Key = Key1 not found
+Sun Nov 15 21:48:02 PST 2015 INFO: GET instruction failed : Key = Key1 not found
+Sun Nov 15 21:56:50 PST 2015 INFO: GET instruction failed : Key = Key1 not found
+Sun Nov 15 22:05:44 PST 2015 INFO: GET instruction failed : Key = Key1 not found
+Sun Nov 15 22:06:52 PST 2015 INFO: GET instruction failed : Key = Key1 not found
+Sun Nov 15 22:07:01 PST 2015 INFO: GET instruction failed : Key = Key1 not found
+Sun Nov 15 23:52:21 PST 2015 INFO: GET instruction failed : Key = Key1 not found
+Mon Nov 16 00:22:13 PST 2015 INFO: GET instruction failed : Key = key1 not found
+Mon Nov 16 00:22:26 PST 2015 INFO: GET instruction failed : Key = key1 not found
+Mon Nov 16 01:09:04 PST 2015 INFO: GET instruction failed : Key = key1 not found
+Sat Nov 28 18:08:54 PST 2015 INFO: DELETE instruction failed : Key = key2 not found
+Sat Nov 28 18:09:05 PST 2015 INFO: GET instruction failed : Key = key2 not found
+Sat Nov 28 18:10:00 PST 2015 INFO: DELETE instruction failed : Key = key2 not found
+Sat Nov 28 20:26:48 PST 2015 INFO: GET instruction failed : Key = key1 not found
+Sat Nov 28 20:27:22 PST 2015 INFO: GET instruction failed : Key = key1 not found
+Sat Nov 28 22:59:44 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.UnmarshalException: Error unmarshaling return header; nested exception is: 
+	java.io.EOFException
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:228)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:49)
+	at RPCClient.start(RPCClient.java:125)
+	at RPCClient.main(RPCClient.java:170)
+Caused by: java.io.EOFException
+	at java.io.DataInputStream.readByte(DataInputStream.java:267)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:214)
+	... 7 more
+
+Sat Nov 28 23:00:30 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.NoSuchObjectException: no such object in table
+	at sun.rmi.transport.StreamRemoteCall.exceptionReceivedFromServer(StreamRemoteCall.java:275)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:252)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:49)
+	at RPCClient.start(RPCClient.java:125)
+	at RPCClient.main(RPCClient.java:170)
+
+Sat Nov 28 23:01:22 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.UnmarshalException: Error unmarshaling return header; nested exception is: 
+	java.io.EOFException
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:228)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:49)
+	at RPCClient.start(RPCClient.java:125)
+	at RPCClient.main(RPCClient.java:170)
+Caused by: java.io.EOFException
+	at java.io.DataInputStream.readByte(DataInputStream.java:267)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:214)
+	... 7 more
+
+Sat Nov 28 23:02:01 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.NoSuchObjectException: no such object in table
+	at sun.rmi.transport.StreamRemoteCall.exceptionReceivedFromServer(StreamRemoteCall.java:275)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:252)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:49)
+	at RPCClient.start(RPCClient.java:125)
+	at RPCClient.main(RPCClient.java:170)
+
+Sat Nov 28 23:02:12 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.NoSuchObjectException: no such object in table
+	at sun.rmi.transport.StreamRemoteCall.exceptionReceivedFromServer(StreamRemoteCall.java:275)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:252)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:49)
+	at RPCClient.start(RPCClient.java:125)
+	at RPCClient.main(RPCClient.java:170)
+
+Sat Nov 28 23:02:24 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.NoSuchObjectException: no such object in table
+	at sun.rmi.transport.StreamRemoteCall.exceptionReceivedFromServer(StreamRemoteCall.java:275)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:252)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:49)
+	at RPCClient.start(RPCClient.java:125)
+	at RPCClient.main(RPCClient.java:170)
+
+Sat Nov 28 23:09:58 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.UnmarshalException: Error unmarshaling return header; nested exception is: 
+	java.io.EOFException
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:228)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:49)
+	at RPCClient.start(RPCClient.java:125)
+	at RPCClient.main(RPCClient.java:170)
+Caused by: java.io.EOFException
+	at java.io.DataInputStream.readByte(DataInputStream.java:267)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:214)
+	... 7 more
+
+Sat Nov 28 23:10:29 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.NoSuchObjectException: no such object in table
+	at sun.rmi.transport.StreamRemoteCall.exceptionReceivedFromServer(StreamRemoteCall.java:275)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:252)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:49)
+	at RPCClient.start(RPCClient.java:125)
+	at RPCClient.main(RPCClient.java:170)
+
+Sat Nov 28 23:10:47 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.NoSuchObjectException: no such object in table
+	at sun.rmi.transport.StreamRemoteCall.exceptionReceivedFromServer(StreamRemoteCall.java:275)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:252)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:49)
+	at RPCClient.start(RPCClient.java:125)
+	at RPCClient.main(RPCClient.java:170)
+
+Sat Nov 28 23:11:00 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.NoSuchObjectException: no such object in table
+	at sun.rmi.transport.StreamRemoteCall.exceptionReceivedFromServer(StreamRemoteCall.java:275)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:252)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:49)
+	at RPCClient.start(RPCClient.java:125)
+	at RPCClient.main(RPCClient.java:170)
+
+Sat Nov 28 23:13:30 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.UnmarshalException: Error unmarshaling return header; nested exception is: 
+	java.net.SocketTimeoutException: Read timed out
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:228)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:49)
+	at RPCClient.start(RPCClient.java:125)
+	at RPCClient.main(RPCClient.java:170)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:254)
+	at java.io.DataInputStream.readByte(DataInputStream.java:265)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:214)
+	... 7 more
+
+Sat Nov 28 23:15:11 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.UnmarshalException: Error unmarshaling return header; nested exception is: 
+	java.net.SocketTimeoutException: Read timed out
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:228)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:50)
+	at RPCClient.start(RPCClient.java:126)
+	at RPCClient.main(RPCClient.java:171)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:254)
+	at java.io.DataInputStream.readByte(DataInputStream.java:265)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:214)
+	... 7 more
+
+Sat Nov 28 23:18:00 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.UnmarshalException: Error unmarshaling return header; nested exception is: 
+	java.net.SocketTimeoutException: Read timed out
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:228)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:50)
+	at RPCClient.start(RPCClient.java:126)
+	at RPCClient.main(RPCClient.java:171)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:254)
+	at java.io.DataInputStream.readByte(DataInputStream.java:265)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:214)
+	... 7 more
+
+Sat Nov 28 23:18:28 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.UnmarshalException: Error unmarshaling return header; nested exception is: 
+	java.net.SocketTimeoutException: Read timed out
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:228)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:50)
+	at RPCClient.start(RPCClient.java:126)
+	at RPCClient.main(RPCClient.java:171)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:254)
+	at java.io.DataInputStream.readByte(DataInputStream.java:265)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:214)
+	... 7 more
+
+Sat Nov 28 23:19:33 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.UnmarshalException: Error unmarshaling return header; nested exception is: 
+	java.net.SocketTimeoutException: Read timed out
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:228)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:50)
+	at RPCClient.start(RPCClient.java:126)
+	at RPCClient.main(RPCClient.java:171)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:254)
+	at java.io.DataInputStream.readByte(DataInputStream.java:265)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:214)
+	... 7 more
+
+Sat Nov 28 23:19:59 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.UnmarshalException: Error unmarshaling return header; nested exception is: 
+	java.net.SocketTimeoutException: Read timed out
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:228)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:50)
+	at RPCClient.start(RPCClient.java:126)
+	at RPCClient.main(RPCClient.java:171)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:254)
+	at java.io.DataInputStream.readByte(DataInputStream.java:265)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:214)
+	... 7 more
+
+Sat Nov 28 23:20:57 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.UnmarshalException: Error unmarshaling return header; nested exception is: 
+	java.net.SocketTimeoutException: Read timed out
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:228)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:50)
+	at RPCClient.start(RPCClient.java:126)
+	at RPCClient.main(RPCClient.java:171)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:254)
+	at java.io.DataInputStream.readByte(DataInputStream.java:265)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:214)
+	... 7 more
+
+Sat Nov 28 23:22:38 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.UnmarshalException: Error unmarshaling return header; nested exception is: 
+	java.net.SocketTimeoutException: Read timed out
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:228)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:50)
+	at RPCClient.start(RPCClient.java:126)
+	at RPCClient.main(RPCClient.java:171)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:254)
+	at java.io.DataInputStream.readByte(DataInputStream.java:265)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:214)
+	... 7 more
+
+Sat Nov 28 23:25:37 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.UnmarshalException: Error unmarshaling return header; nested exception is: 
+	java.net.SocketTimeoutException: Read timed out
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:228)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:50)
+	at RPCClient.start(RPCClient.java:126)
+	at RPCClient.main(RPCClient.java:171)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:254)
+	at java.io.DataInputStream.readByte(DataInputStream.java:265)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:214)
+	... 7 more
+
+Sat Nov 28 23:25:52 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.UnmarshalException: Error unmarshaling return header; nested exception is: 
+	java.net.SocketTimeoutException: Read timed out
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:228)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:50)
+	at RPCClient.start(RPCClient.java:126)
+	at RPCClient.main(RPCClient.java:171)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:254)
+	at java.io.DataInputStream.readByte(DataInputStream.java:265)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:214)
+	... 7 more
+
+Sat Nov 28 23:27:06 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.UnmarshalException: Error unmarshaling return header; nested exception is: 
+	java.net.SocketTimeoutException: Read timed out
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:228)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:50)
+	at RPCClient.start(RPCClient.java:126)
+	at RPCClient.main(RPCClient.java:171)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:254)
+	at java.io.DataInputStream.readByte(DataInputStream.java:265)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:214)
+	... 7 more
+
+Sat Nov 28 23:31:10 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.UnmarshalException: Error unmarshaling return header; nested exception is: 
+	java.net.SocketTimeoutException: Read timed out
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:228)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:50)
+	at RPCClient.start(RPCClient.java:126)
+	at RPCClient.main(RPCClient.java:171)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:254)
+	at java.io.DataInputStream.readByte(DataInputStream.java:265)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:214)
+	... 7 more
+
+Sat Nov 28 23:31:29 PST 2015 INFO: DELETE instruction failed : Key = k not found
+Sat Nov 28 23:31:46 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.UnmarshalException: Error unmarshaling return header; nested exception is: 
+	java.net.SocketTimeoutException: Read timed out
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:228)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:50)
+	at RPCClient.start(RPCClient.java:126)
+	at RPCClient.main(RPCClient.java:171)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:254)
+	at java.io.DataInputStream.readByte(DataInputStream.java:265)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:214)
+	... 7 more
+
+Sat Nov 28 23:34:25 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.NoSuchObjectException: no such object in table
+	at sun.rmi.transport.StreamRemoteCall.exceptionReceivedFromServer(StreamRemoteCall.java:275)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:252)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:50)
+	at RPCClient.start(RPCClient.java:126)
+	at RPCClient.main(RPCClient.java:171)
+
+Sat Nov 28 23:34:39 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.UnmarshalException: Error unmarshaling return header; nested exception is: 
+	java.net.SocketTimeoutException: Read timed out
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:228)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:50)
+	at RPCClient.start(RPCClient.java:126)
+	at RPCClient.main(RPCClient.java:171)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:254)
+	at java.io.DataInputStream.readByte(DataInputStream.java:265)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:214)
+	... 7 more
+
+Sat Nov 28 23:34:55 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.UnmarshalException: Error unmarshaling return header; nested exception is: 
+	java.net.SocketTimeoutException: Read timed out
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:228)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:50)
+	at RPCClient.start(RPCClient.java:126)
+	at RPCClient.main(RPCClient.java:171)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:254)
+	at java.io.DataInputStream.readByte(DataInputStream.java:265)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:214)
+	... 7 more
+
+Sat Nov 28 23:36:40 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.UnmarshalException: Error unmarshaling return header; nested exception is: 
+	java.net.SocketTimeoutException: Read timed out
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:228)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:50)
+	at RPCClient.start(RPCClient.java:126)
+	at RPCClient.main(RPCClient.java:171)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:254)
+	at java.io.DataInputStream.readByte(DataInputStream.java:265)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:214)
+	... 7 more
+
+Sat Nov 28 23:36:51 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.UnmarshalException: Error unmarshaling return header; nested exception is: 
+	java.net.SocketTimeoutException: Read timed out
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:228)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:50)
+	at RPCClient.start(RPCClient.java:126)
+	at RPCClient.main(RPCClient.java:171)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:254)
+	at java.io.DataInputStream.readByte(DataInputStream.java:265)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:214)
+	... 7 more
+
+Sat Nov 28 23:39:38 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.UnmarshalException: Error unmarshaling return header; nested exception is: 
+	java.net.SocketTimeoutException: Read timed out
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:228)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:50)
+	at RPCClient.start(RPCClient.java:126)
+	at RPCClient.main(RPCClient.java:171)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:254)
+	at java.io.DataInputStream.readByte(DataInputStream.java:265)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:214)
+	... 7 more
+
+Sat Nov 28 23:39:51 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.UnmarshalException: Error unmarshaling return header; nested exception is: 
+	java.net.SocketTimeoutException: Read timed out
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:228)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:50)
+	at RPCClient.start(RPCClient.java:126)
+	at RPCClient.main(RPCClient.java:171)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:254)
+	at java.io.DataInputStream.readByte(DataInputStream.java:265)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:214)
+	... 7 more
+
+Sat Nov 28 23:42:31 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.UnmarshalException: Error unmarshaling return header; nested exception is: 
+	java.net.SocketTimeoutException: Read timed out
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:228)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:50)
+	at RPCClient.start(RPCClient.java:126)
+	at RPCClient.main(RPCClient.java:171)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:254)
+	at java.io.DataInputStream.readByte(DataInputStream.java:265)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:214)
+	... 7 more
+
+Sat Nov 28 23:44:40 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.UnmarshalException: Error unmarshaling return header; nested exception is: 
+	java.net.SocketTimeoutException: Read timed out
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:228)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:50)
+	at RPCClient.start(RPCClient.java:126)
+	at RPCClient.main(RPCClient.java:171)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:254)
+	at java.io.DataInputStream.readByte(DataInputStream.java:265)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:214)
+	... 7 more
+
+Sat Nov 28 23:49:49 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.NoSuchObjectException: no such object in table
+	at sun.rmi.transport.StreamRemoteCall.exceptionReceivedFromServer(StreamRemoteCall.java:275)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:252)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:50)
+	at RPCClient.start(RPCClient.java:126)
+	at RPCClient.main(RPCClient.java:171)
+
+Sat Nov 28 23:50:01 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.UnmarshalException: Error unmarshaling return header; nested exception is: 
+	java.net.SocketTimeoutException: Read timed out
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:228)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:50)
+	at RPCClient.start(RPCClient.java:126)
+	at RPCClient.main(RPCClient.java:171)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:254)
+	at java.io.DataInputStream.readByte(DataInputStream.java:265)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:214)
+	... 7 more
+
+Sat Nov 28 23:50:14 PST 2015 SEVERE: PUT instruction failed : Key : k  Value: v
+java.rmi.UnmarshalException: Error unmarshaling return header; nested exception is: 
+	java.net.SocketTimeoutException: Read timed out
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:228)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:194)
+	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:148)
+	at com.sun.proxy.$Proxy0.put(Unknown Source)
+	at RPCClient.consoleUI(RPCClient.java:50)
+	at RPCClient.start(RPCClient.java:126)
+	at RPCClient.main(RPCClient.java:171)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:254)
+	at java.io.DataInputStream.readByte(DataInputStream.java:265)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:214)
+	... 7 more
+
+Sun Nov 29 01:03:09 PST 2015 INFO: GET instruction failed : Key = Key1 not found
+Sun Nov 29 01:03:43 PST 2015 INFO: GET instruction failed : Key = key1 not found

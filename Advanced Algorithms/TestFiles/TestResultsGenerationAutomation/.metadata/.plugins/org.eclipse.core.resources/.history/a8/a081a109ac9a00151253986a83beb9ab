@@ -1,0 +1,178 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList; 
+import java.util.HashMap;
+import java.util.HashSet;  //for unique vertices
+import java.util.LinkedHashMap; //for ordered nodes
+import java.util.LinkedList;   // inside the main algo for adjacency
+
+/**
+ * 
+ * @author JessicaG
+ * The code is for PreFlowPush Algorithm
+ * 1) The height of all the nodes except Source Node is 0
+ * 2) The maximum flow at Source Node is assumed to be Maximum possible (like infinity)
+ * 3) The PreflowPush function contains both Push and Relabel operation as a part of it.
+ * 4) Used an additional parameter true and false, to distinguish between source/sink node and forward/backward edges.
+ */
+public class PreFlowPushAlgo {
+	
+	/**Data Structure used through to store, Height Excess, Edges and Source/Sink node information**/
+	       HashSet<String> Uvertices = new HashSet<String>();
+	static HashMap<String, Integer> VHeight= new HashMap<String, Integer>();
+	static HashMap<String, Integer> VExcess= new HashMap<String, Integer>();
+	static HashMap<String, Boolean> VSoS= new HashMap<String, Boolean>();
+	static LinkedHashMap<String, ArrayList<Edge>> VNEdges= new LinkedHashMap<String, ArrayList<Edge>>();
+	public int TotalEdges=0; //for external calculations only (for making Graphs)
+	
+	/**
+	 * Main runner Class
+	 **/
+	public void runner(String fileName){
+		try(BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+		    for(String line; (line = br.readLine()) != null; ) {  //Reading from input file
+		    	TotalEdges++;
+		        String[] vertices = line.trim().split("\\s+");
+		        //System.out.println(vertices.length);
+		        for (int i=0;i<vertices.length;i++){
+		        	if(i==0||i==1){  //Handling source and sink node
+		        		int excessS=0;
+		        		Boolean ans=false;
+		        		if(vertices[i].equalsIgnoreCase ("s")||vertices[i].equalsIgnoreCase ("t")){
+		        			ans= true;
+		        		}
+		        		if(vertices[i].equalsIgnoreCase ("s")){
+		        			excessS = Integer.MAX_VALUE;
+		        		}
+		        		Uvertices.add(vertices[i]); // to get the unique nodes only
+		        		VHeight.put(vertices[i], 1);  //Adding node related credentials,
+		        		VExcess.put(vertices[i], excessS);
+		        		VSoS.put(vertices[i], ans);
+		        	}
+		        }
+		        //System.out.println(vertices[0]+" , "+vertices[1]);
+		        new Edge(vertices[0], vertices[1], Integer.parseInt(vertices[2]), false); // Call to create edge
+		    }
+		    //System.out.println(Uvertices.size());//tested
+	        VHeight.put("s",Uvertices.size()); //updating the height of source node
+	        br.close();
+		} 
+		catch (IOException e) {
+			System.out.println("Problem in reading from the File");
+		}
+		//Run();
+		PreflowPush("s", "t"); //Call the main function	
+	}
+	/*
+	 * Handle Adjacent edges and flow, capacity values.
+	 */
+	class Edge {
+		public String dest;
+		public Edge back;
+		public int capacity;
+		public int flow = 0;
+		/**Constructor**/
+		public Edge(String source, String dest, int capacity, boolean isBack) {
+			ArrayList<Edge> arraylist = new ArrayList<Edge>();
+			if(VNEdges.get(source)!=null)
+				arraylist.addAll(VNEdges.get(source));
+			this.dest = dest;
+			this.capacity = capacity;
+			arraylist.add(this);
+			VNEdges.put(source,arraylist);
+			if (!isBack) {
+				Edge backEdge = new Edge(this.dest,source, 0, true);
+				this.back = backEdge;
+				backEdge.back = this;
+			}
+		}
+		public int remaining() {  // to check the remaining flow on an edge
+			return capacity - flow;
+		}
+	}
+	/*
+	 * PreflowPush algorithm
+	 */
+	public static void PreflowPush(String source, String sink) {
+		// source.height should be the number of nodes, sink.height should be 1
+		LinkedList<String> q = new LinkedList<String>();
+		q.add(source); //add the nodes with Pre-flow
+		while (!q.isEmpty()) {
+			String node = q.remove();
+			int minHeight = Integer.MAX_VALUE;
+			for (int i = 0; i < VNEdges.get(node).size(); i++) { // bringing all the connected edges of a node
+				/*
+				 * This is to check if there is an edge with less height than the source node( node v as v to w)
+				 */
+				if (VHeight.get(VNEdges.get(node).get(i).dest) < minHeight 
+						&& VNEdges.get(node).get(i).remaining() > 0)
+					minHeight = VHeight.get(VNEdges.get(node).get(i).dest);
+			}
+			/*
+			 * Relabel operation
+			 */
+			if (minHeight != Integer.MAX_VALUE && minHeight >= VHeight.get(node)/*node.height*/){
+				VHeight.put(node,minHeight + 1); //Relabel operation
+			}
+		  for (int i = 0; i < VNEdges.get(node).size(); i++) {
+			  if (VHeight.get(VNEdges.get(node).get(i).dest) < VHeight.get(node)) {
+				  int pushedFlow = VNEdges.get(node).get(i).remaining();
+				  if (pushedFlow > VExcess.get(node)){ //If there is excess flows and can be pushed
+					  pushedFlow = VExcess.get(node);
+				  }
+				  /*
+				   * *Push operation
+				   */
+				if (pushedFlow > 0) {
+					VNEdges.get(node).get(i).flow += pushedFlow;  //push the flow on the neighbor node
+					VNEdges.get(node).get(i).back.flow -= pushedFlow; //create the residual edge.
+					int pflow = pushedFlow+ VExcess.get(VNEdges.get(node).get(i).dest);
+					VExcess.put(VNEdges.get(node).get(i).dest,pflow);
+					int eflow = VExcess.get(node)-pushedFlow; //Subtract the pushed flow from excess -- Non-saturated
+					VExcess.put(node, eflow);
+					if (!VSoS.get(VNEdges.get(node).get(i).dest)){
+					  q.add(VNEdges.get(node).get(i).dest);  //move to the next node (Current v) 
+					}
+				    if(VExcess.get(node)<=0)  // if no more flow left on the nodes
+				    	break;
+				}
+			  }
+			}
+		  if (VExcess.get(node) > 0 && !VSoS.get(node)){   //add the nodes with flow in the list
+			q.add(node);
+		  }
+		}
+	}
+	
+	
+	/**
+	 *Main
+	 **/
+	@SuppressWarnings("static-access")
+	public static void main(String args[]){
+		PreFlowPushAlgo pa = new PreFlowPushAlgo();
+		String textFile = args[0];  //Manipulate the path of file as argument
+		double[] diff = new double[3];
+		double time=0.0;
+		//Take average of time
+		for(int i=0;i<3;i++){
+			//clear storage for the next execution
+			pa.VExcess.clear();
+			pa.VHeight.clear();
+			pa.VNEdges.clear();
+			pa.Uvertices.clear();
+			pa.VSoS.clear();
+			pa.TotalEdges=0;
+			long start = System.nanoTime();
+			pa.runner(textFile);
+			diff[i]=(double) (System.nanoTime() - start)/1000000000.0;
+			System.out.println("Total time taken to Run: "+(i+1)+" times: "+diff[i]);
+			time=time+diff[i];
+		}
+		System.out.println("\n"+"Average time taken to Run: "+time/3+" "+pa.TotalEdges);
+		
+		// Uncomment this line to get the flow value at Sink
+		System.out.printf("\n"+"Flow pushed through the graph: "+ VExcess.get("t"));
+	}	
+}

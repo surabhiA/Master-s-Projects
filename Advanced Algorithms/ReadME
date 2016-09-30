@@ -1,0 +1,7 @@
+To compile the program:
+Go into the project directory from the command line and type:
+make
+
+To run the program:
+Type:
+> java tcss543 < path/inputFilename.txt

@@ -1,0 +1,25 @@
+2-Phase commit Executive Summary
+                                                        -By Swati Garg and Surabhi Agrawal
+
+
+
+Overview:
+        This project is an extension of our second project which was a multi-client single server key-value store. In this project, we extended the previous project to support multiple servers. We use two phase commit to keep the various backend key-value stores in sync. 
+Like the previous projects, we use RMI for server-client and server-server communications. All the operations are multi-thread safe to handle concurrency. There is both client and server logs to enable debugging.
+Discovery of peers and handling machine failures is out of scope for this project and will be handled in future projects.
+
+Technical Impression:
+	Two phase commit is the atomic commitment protocol. When the client make a request to the server, the server act as the coordinator. The coordinator initiates the voting with the peers, and send the ‘vote’ message to all the peers. If all peers are ready, the coordinator sends the ‘commit’ message to all the peers. Otherwise, in case where any of the server can’t commit, the coordinator sends an abort message to all the peers.
+
+	When the client makes the request to the server it will connect to any of the available servers randomly. The server chosen acts as the coordinator. The coordinator sends the vote request to all the peers to implement the request. Once the acknowledgement is received from all the peers the coordinator sends the commit message to all the peers for the request. Else it will send abort.  
+
+	The Key-Value store (which the client connects to) and the TwoPhaseCommit (which the coordinator uses to communicate with its peers) are implemented using RMI. The use of RMI makes the basic server and client code simpler, as it presents a local function-call semantics to the remote objects. However, RMI doesn’t guarantee that the methods on same remote object is run on same thread. This means the remote objects can’t safely use locks across the method invocations. This created additional complexity for enabling concurrency. We resolved this by encapsulating the data store in a separate class and adding a synchronization state for the put and delete calls.
+
+	We have implemented the timeout exception in case any peer is down and the coordinator does not receive the confirm message. This will abort the protocol. 
+	We have implemented timeout on the peer side. The peers will also drop the two phase commit readiness if the commit message isn’t received within a certain timeframe. This prevents the peers from waiting forever in case the commit or abort messages are lost.
+	
+	We implemented multithreading by using a concurrent hash map. The concurrent hash map provides a concurrent and thread safe access to its put, get and remove functions. We have incorporated client and server side logging. The client side logging mostly involves handling exceptions. We used the java logging library to log the errors in a file. The server side was more complicated. We wanted to log all the calls to the server as well as any error messages that were passed back to the client. We used the transport level logging of RMI for this purpose and routed the log to a log file.
+	
+	The project assumes that all the servers are available all the time and are known in advance. This discovery aspect was considered out of scope for this project and can be explored in future projects.
+
+	We did not use the RMI’s SecurityManager (System.setSecurityManager(new RMISecurityManager())) when implementing the program. The security manager is needed when the RMI class loader needs to load the class definition from remote location. Since our server and client are in the same codebase, the client don’t need to download any remote class definition. As such, the security manager wasn’t needed, and the class definitions were loaded from local CLASSPATH.

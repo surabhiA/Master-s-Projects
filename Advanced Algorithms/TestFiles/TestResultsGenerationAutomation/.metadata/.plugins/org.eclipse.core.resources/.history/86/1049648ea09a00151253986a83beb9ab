@@ -1,0 +1,103 @@
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+import graphFiles.*;
+public class GenTestFiles {
+	BipartiteGraph BG = new BipartiteGraph();
+	FixedGraph FG= new FixedGraph();
+	RandomGraph RG= new RandomGraph();
+	MeshGenerator MG= new MeshGenerator();
+	String directoryE="TestFiles", fileNameE;
+	public static double round(double value, int places) {
+	    if (places < 0) throw new IllegalArgumentException();
+
+	    BigDecimal bd = new BigDecimal(value);
+	    bd = bd.setScale(places, RoundingMode.HALF_UP);
+	    return bd.doubleValue();
+	}
+	public void BipartiteG(){
+		int nE=50, mE=20, maxCapacityE=0, minCapacityE=0;
+		double maxProbabilityE=0.4;
+		for(int i=1;i<=3;i++){ //change nodes n
+			maxProbabilityE=0.4; mE=10; maxCapacityE=0; minCapacityE=0;
+			for(int j=1;j<=3;j++){ //Change nodes m and capacities 
+				
+				maxCapacityE=maxCapacityE+(40*j);
+				minCapacityE=minCapacityE+(5*j);
+				maxProbabilityE=0.4;
+				for(int k=1;k<=3;k++){ //Change Probability
+					maxProbabilityE=maxProbabilityE+0.2;
+					fileNameE="BG-"+i+"InputF-n-"+nE+"--m-"+mE+"--p-"+round(maxProbabilityE,1)+"--cap-"+maxCapacityE+k+".txt";
+					BG.collectData(nE, mE,round(maxProbabilityE,1) ,maxCapacityE, minCapacityE, directoryE, fileNameE);
+				}
+				mE=mE+80*j;
+			}
+			nE=nE+100*i;
+		}
+	}
+	public void FixedG(){
+		int v=50,e,min,max;
+		for(int i=1;i<=3;i++){ //change nodes v
+			e=0; min=0; max=0;
+			for(int j=1;j<=3;j++){ //Change edges e 
+				e=e+j+1;
+				min=1; max=1;
+				for(int k=1;k<=3;k++){ //Change capacity min and max
+					min=min+(5*k);
+					max=max+(120*k);
+					fileNameE="FG-"+i+"InputF-"+v+"v-"+e+"out-"+min+"min-"+max+"max.txt";
+					FG.graphBuilder(v, e, min, max,directoryE+"/"+fileNameE);
+				}
+			}
+			v=v+100*i;
+		}
+	}
+	public void RandomG(){
+		int vertices=50,dense=30,maxCapacity,minCapacity;
+		for(int i=1;i<=3;i++){ //change nodes v
+			dense=20; maxCapacity=0; minCapacity=0;
+			for(int j=1;j<=3;j++){ //Change edges e 
+				dense=dense+10*j; //30,50,70
+				maxCapacity=1; minCapacity=1;
+				for(int k=1;k<=3;k++){ //Change capacity min and max
+					minCapacity=minCapacity+(5*k);
+					maxCapacity=maxCapacity+(50*k);
+					fileNameE="RG-"+i+"InputF-"+vertices+"n-"+dense+"d-"+minCapacity+"min-"+maxCapacity+"max.txt";
+					RG.BuildGraph(fileNameE, directoryE, vertices, dense, maxCapacity, minCapacity);
+				}
+			}
+			vertices=vertices+100*i;
+		}
+	}
+	public void MeshG() throws FileNotFoundException{
+		int n=50;
+		int m=10;
+		int c=10;
+		for(int i=1;i<=3;i++){ //change nodes args[0]
+			m=10; c=10;
+			for(int j=1;j<=3;j++){ //Change nodes args[1] 
+				c=10;
+				for(int k=1;k<=3;k++){ //Change args[2], capacity
+					c=c+10*k;
+					fileNameE="MG-"+i+"InputF-"+n+"n-"+m+"m-"+c+"Capacity.txt";
+					String fileN=directoryE+"/"+fileNameE;
+					PrintStream p = new PrintStream(fileN);
+					MG.MeshGeneratorA(n, m, c, p);
+				}
+				m=m+30*j; //
+			}
+			n=n+100*i;
+		}
+	}
+	public static void main(String args[]) throws FileNotFoundException{
+		GenTestFiles TF = new GenTestFiles();
+		TF.FixedG();
+		TF.RandomG();
+		TF.MeshG();
+		TF.BipartiteG();
+		System.out.println("DONE..");
+	}
+
+}

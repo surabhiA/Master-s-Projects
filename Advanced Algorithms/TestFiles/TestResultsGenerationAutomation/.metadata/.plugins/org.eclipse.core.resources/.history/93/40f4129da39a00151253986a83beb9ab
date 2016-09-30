@@ -1,0 +1,138 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashSet;  //for unique vertices
+/**
+ * 
+ * @author Jessica
+ *Ucnomment some sections Metioned with UNCOMMENT and change the name appropiately
+ */
+
+public class TestTestfiles {
+	
+	//FordFulkerson fa = new FordFulkerson(); //UNCOMMENT
+	//ScalingFordFulkerson sa = new ScalingFordFulkerson();//UNCOMMENT
+	/**Create other object here..**/
+	/***
+	 * Script to run the test Scripts one by one and Write the output in file
+	 */
+	@SuppressWarnings("static-access")
+	public void clear(){
+		/**clear storage for the next execution**/
+		//pa.VExcess.clear();
+		//pa.VHeight.clear();
+		//pa.VNEdges.clear();
+		//pa.Uvertices.clear();
+		//pa.VSoS.clear();
+	}
+	/**Getting total number of edges and vertices**/
+	public String[] Otherinfo(String file) throws IOException{
+		int TotalEdges=0;
+		String[] a = new String[2];
+		HashSet<String> Uvertices = new HashSet<String>();
+		BufferedReader br = new BufferedReader(new FileReader(file));
+		 for(String line; (line = br.readLine()) != null; ) {  //Reading from input file
+		    	TotalEdges++;
+		    	String[] vertices = line.trim().split("\\s+");
+		        //System.out.println(vertices.length);
+		        for (int i=0;i<vertices.length;i++){
+		    	Uvertices.add(vertices[i]); // to get the unique nodes only
+		        }
+		 }
+		 br.close();
+		 a[0]=Uvertices.size()+"";
+		 a[1]=TotalEdges+"";
+		return a;
+	}
+	public void ReadFile(){
+		int count=0;
+		try{
+		File out= new File("results1.csv");
+		BufferedWriter bw = new BufferedWriter(new FileWriter(out,true));
+		bw.append("FileName,Vertices,Edges,Time");
+		File folder = new File("InputFiles/");
+		File[] listOfFiles = folder.listFiles();
+
+		for (File file : listOfFiles) {
+		    if (file.isFile()) {
+		    	String fileN="InputFiles/"+file.getName();
+		    	System.out.println(fileN);
+		        //System.out.println(file.getName());
+		    	//System.out.println("started reading File:- "+ fileN);
+		    	bw.append("\n"+fileN+","+ExecuteAlgo("PreFlow",fileN));
+		    	//bw.append("\n"+fileN+","+ExecuteAlgo("FordFukerson",fileN));
+		    	//bw.append("\n"+fileN+","+ExecuteAlgo("ScalingFord",fileN));
+		    	count++;
+		    	//System.out.println("finished Writting For File:- "+ fileN);
+		    }
+		    System.out.println(count);
+		}
+		bw.close();
+		}
+		catch(IOException e){
+			System.err.println("Close the file");
+		}
+	}
+	/**
+	 * @param fileName
+	 * @return the total number of Edges, Vertices and Time to Execute the InputFile
+	 * @throws IOException 
+	 */
+	@SuppressWarnings("static-access")
+	public String ExecuteAlgo (String algo, String fileName) throws IOException{
+		String[] Totals= Otherinfo(fileName);
+		double[] diff = new double[3];
+		double time=0.0;
+		String timeNalgo = "";
+		if(algo=="PreFlow"){
+			for(int i=0;i<3;i++){
+				//clear();
+				long start = System.nanoTime();
+				maxflowMy pa = new maxflowMy();
+				pa.runner(fileName);
+				diff[i]=(double) (System.nanoTime() - start)/1000000000.0;
+				time=time+diff[i];
+			}
+			timeNalgo=algo+","+String.format( "%.3f",time/3);
+		}
+		/*if(algo=="FordFukerson"){  //UNCOMMENT
+			for(int i=0;i<3;i++){
+				clear();
+				long start = System.nanoTime();
+				fa.run(fileName);
+				diff[i]=(double) (System.nanoTime() - start)/1000000000.0;
+				time=time+diff[i];
+			}
+			//Take average of time
+			timeNalgo=algo+","+String.format( "%.3f",time/3);
+		}*/
+		/*if(algo=="ScalingFord"){  //UNCOMMENT
+			for(int i=0;i<3;i++){
+				clear();
+				long start = System.nanoTime();
+				sa.runner(fileName);
+				diff[i]=(double) (System.nanoTime() - start)/1000000000.0;
+				time=time+diff[i];
+			}
+			//Take average of time
+			timeNalgo=algo+","+String.format( "%.3f",time/3);
+		}*/
+		
+		
+		return(Totals[0]+ ","+Totals[1]+","+timeNalgo);
+		}
+	/**
+	 * 
+	 * @param args
+	 * Main function
+	 */
+	public static void main(String args[]){
+		TestTestfiles tf = new TestTestfiles();
+		//System.out.println("Vertices"+",Edges"+",Time");
+		tf.ReadFile();
+		System.out.println("--------------Finished Wrirting---------------");
+	}
+}
